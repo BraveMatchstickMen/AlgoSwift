@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:Singly Linked List"
+      name = "Singly Linked List">
+      <FileRef
+         location = "group:SinglyLinkedList.playground">
+      </FileRef>
+   </Group>
+</Workspace>
