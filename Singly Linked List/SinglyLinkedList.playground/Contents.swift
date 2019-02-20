@@ -117,8 +117,18 @@ public struct SinglyLinkedList<T: Equatable> {
 }
 
 extension SinglyLinkedList {
-    public func reverse() {
-        
+    public mutating func reverse() {
+        var current = head
+        var prev: Node? = nil
+        var next: Node? = nil
+
+        while current != nil {
+            next = current?.next
+            current?.next = prev
+            prev = current
+            current = next
+        }
+        head = prev
     }
 }
 
@@ -156,10 +166,12 @@ list[0]
 list[1]
 
 let node = SinglyLinkedListNode(value: "3")
-list.insert(node, atIndex: 1)
+list.insert(node, atIndex: 2)
 list[0]
 list[1]
 list[2]
+
+list.reverse()
 
 list.remove(at: 1)
 list.description
