@@ -1,6 +1,6 @@
 //: # Singly Linked List
 
-public class SinglyLinkedListNode<T> {
+public class SinglyLinkedListNode<T: Equatable> {
     public var value: T
     public var next: SinglyLinkedListNode?
 
@@ -9,7 +9,7 @@ public class SinglyLinkedListNode<T> {
     }
 }
 
-public struct SinglyLinkedList<T> {
+public struct SinglyLinkedList<T: Equatable> {
     public typealias Node = SinglyLinkedListNode<T>
     private var head: Node?
 
@@ -60,7 +60,7 @@ public struct SinglyLinkedList<T> {
             return head!
         } else {
             var node = head?.next
-            for _ in 1..<index {
+            for _ in 1 ..< index {
                 node = node?.next
                 if node == nil {
                     break
@@ -91,9 +91,48 @@ public struct SinglyLinkedList<T> {
         head = nil
     }
 
-//    public func remove(node: Node) -> T {
-//        
-//    }
+    public func remove(at index: Int) -> T {
+        precondition(index >= 0 && index < self.count)
+
+        let previous = self.node(atIndex: index - 1)
+        let nodeToDelete = self.node(atIndex: index)
+
+        previous.next = nodeToDelete.next
+
+        return nodeToDelete.value
+    }
+
+    public func remove(with node: Node?) {
+        var previous = head
+
+        while previous?.value != node?.value {
+            guard let next = head?.next else {
+                return
+            }
+            previous = next
+        }
+
+        previous?.next = node?.next
+    }
+}
+
+extension SinglyLinkedList {
+    public func reverse() {
+        
+    }
+}
+
+extension SinglyLinkedList: CustomStringConvertible {
+    public var description: String {
+        var s = "["
+        var node = head
+        while node != nil {
+            s += "\(node!.value)"
+            node = node?.next
+            if node != nil { s += ", "}
+        }
+        return s + "]"
+    }
 }
 
 var list = SinglyLinkedList<String>()
@@ -121,3 +160,10 @@ list.insert(node, atIndex: 1)
 list[0]
 list[1]
 list[2]
+
+list.remove(at: 1)
+list.description
+
+let node1 = SinglyLinkedListNode(value: "1")
+list.remove(with: node1)
+list.description
