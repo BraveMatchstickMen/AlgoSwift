@@ -2,6 +2,13 @@
 <Workspace
    version = "1.0">
    <Group
+      location = "group:Linked List"
+      name = "Linked List">
+      <FileRef
+         location = "group:LinkedList.playground">
+      </FileRef>
+   </Group>
+   <Group
       location = "group:Singly Linked List"
       name = "Singly Linked List">
       <FileRef
