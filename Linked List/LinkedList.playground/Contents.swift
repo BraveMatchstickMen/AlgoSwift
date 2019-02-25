@@ -139,6 +139,39 @@ extension LinkedList: CustomStringConvertible {
     }
 }
 
+extension LinkedList {
+    public func reverse() {
+        var node = head
+        while let current = node {
+            node = current.next
+            swap(&current.next, &current.previous)
+            head = current
+        }
+    }
+
+    public func map<U>(transform: (T) -> U) -> LinkedList<U> {
+        let result = LinkedList<U>()
+        var node = head
+        while node != nil {
+            result.append(value: transform(node!.value))
+            node = node!.next
+        }
+        return result
+    }
+
+    public func filter(predicate: (T) -> Bool) -> LinkedList<T> {
+        let result = LinkedList<T>()
+        var node = head
+        while node != nil {
+            if predicate(node!.value) {
+                result.append(value: node!.value)
+            }
+            node = node!.next
+        }
+        return result
+    }
+}
+
 let list = LinkedList<String>()
 list.isEmpty
 list.first
@@ -172,3 +205,18 @@ list.remove(node: list.first!)
 list.count
 list[0]
 list[1]
+
+let mapList = LinkedList<String>()
+mapList.append(value: "Hello")
+mapList.append(value: "Swifty")
+mapList.append(value: "Universe")
+
+let m = mapList.map { s in
+    s.count
+}
+m
+
+let f = mapList.filter { s in
+    s.count > 5
+}
+f
