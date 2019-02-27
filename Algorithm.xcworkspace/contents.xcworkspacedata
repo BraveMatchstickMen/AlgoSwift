@@ -2,6 +2,23 @@
 <Workspace
    version = "1.0">
    <Group
+      location = "group:Queue"
+      name = "Queue">
+      <FileRef
+         location = "group:QueueOptimal.playground">
+      </FileRef>
+      <FileRef
+         location = "group:Queue.playground">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Stack"
+      name = "Stack">
+      <FileRef
+         location = "group:Stack.playground">
+      </FileRef>
+   </Group>
+   <Group
       location = "group:Linked List"
       name = "Linked List">
       <FileRef
