@@ -2,6 +2,13 @@
 <Workspace
    version = "1.0">
    <Group
+      location = "group:Recursion"
+      name = "Recursion">
+      <FileRef
+         location = "group:Recursion.playground">
+      </FileRef>
+   </Group>
+   <Group
       location = "group:Queue"
       name = "Queue">
       <FileRef
