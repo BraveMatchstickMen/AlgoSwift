@@ -21,6 +21,30 @@ public class BinarySearchTree<T: Comparable> {
     public var isRoot: Bool {
         return parent == nil
     }
+
+    public var isLeftChild: Bool {
+        return parent?.left === self
+    }
+
+    public var isLeaf: Bool {
+        return left == nil && right == nil
+    }
+
+    public func minimum() -> BinarySearchTree {
+        var node = self
+        while let next = node.left {
+            node = next
+        }
+        return node
+    }
+
+    public func maximum() -> BinarySearchTree {
+        var node = self
+        while let next = node.right {
+            node = next
+        }
+        return node
+    }
 }
 
 extension BinarySearchTree {
@@ -69,6 +93,67 @@ extension BinarySearchTree {
     }
 }
 
+extension BinarySearchTree {
+    @discardableResult public func remove() -> BinarySearchTree? {
+        let replacement: BinarySearchTree?
+
+        if let right = right {
+            replacement = right.minimum()
+        } else if let left = left {
+            replacement = left.maximum()
+        } else {
+            replacement = nil
+        }
+
+        replacement?.remove()
+
+        replacement?.right = right
+        replacement?.left = left
+        right?.parent = replacement
+        left?.parent = replacement
+        reconnectParentTo(node: replacement)
+
+        parent = nil
+        left = nil
+        right = nil
+
+        return replacement
+    }
+}
+
+extension BinarySearchTree {
+    private func reconnectParentTo(node: BinarySearchTree?) {
+        if let parent = parent {
+            if isLeftChild {
+                parent.left = node
+            } else {
+                parent.right = node
+            }
+        }
+        node?.parent = parent
+    }
+}
+
+extension BinarySearchTree {
+    public func height() -> Int {
+        if isLeaf {
+            return 0
+        } else {
+            return 1 + max(left?.height() ?? 0, right?.height() ?? 0)
+        }
+    }
+
+    public func depth() -> Int {
+        var node = self
+        var edges = 0
+        while let parent = node.parent {
+            node = parent
+            edges += 1
+        }
+        return edges
+    }
+}
+
 extension BinarySearchTree: CustomStringConvertible {
     public var description: String {
         var s = ""
@@ -100,3 +185,9 @@ tree.search(value: 2)
 tree.search(value: 6)
 
 tree.toArray()
+tree.height()
+tree.search(value: 2)?.remove()
+
+print(tree)
+
+tree.search(value: 9)?.depth()
