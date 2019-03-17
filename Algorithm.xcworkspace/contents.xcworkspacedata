@@ -2,6 +2,41 @@
 <Workspace
    version = "1.0">
    <Group
+      location = "group:Binary Search Tree"
+      name = "Binary Search Tree">
+      <FileRef
+         location = "group:BinarySearchTree.playground">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Binary Tree"
+      name = "Binary Tree">
+      <FileRef
+         location = "group:BinaryTree(enum).playground">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Hash Table"
+      name = "Hash Table">
+      <FileRef
+         location = "group:HashTable.playground">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Heap"
+      name = "Heap">
+      <FileRef
+         location = "group:Heap.playground">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Tree"
+      name = "Tree">
+      <FileRef
+         location = "group:Tree.playground">
+      </FileRef>
+   </Group>
+   <Group
       location = "group:Recursion"
       name = "Recursion">
       <FileRef
